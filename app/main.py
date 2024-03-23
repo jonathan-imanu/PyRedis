@@ -12,7 +12,8 @@ def main():
     conn, server = server_socket.accept()
     with conn:
         data = conn.recv(1024)
-        conn.sendall("+PONG\r\n:")
+        res = "+PONG\r\n"
+        conn.sendall(res.encode())
 
 if __name__ == "__main__":
     main()
