@@ -9,11 +9,11 @@ def main():
     #
     server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
     server_socket.accept() 
-    conn, server = server_socket.accept()
-    with conn:
-        req = conn.recv(1024)
-        resp = b"+PONG\r\n"
-        conn.sendall(resp)
+    connection, address = server_socket.accept()  # wait for client
+    with connection:
+        request = connection.recv(1024)
+        response = b"+PONG\r\n"
+        connection.sendall(response)
 
 if __name__ == "__main__":
     main()
