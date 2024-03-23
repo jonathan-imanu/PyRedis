@@ -11,9 +11,9 @@ def main():
     server_socket.accept() 
     conn, server = server_socket.accept()
     with conn:
-        data = conn.recv(1024)
-        res = "+PONG\r\n"
-        conn.sendall(res.encode())
+        req = conn.recv(1024)
+        resp = b"+PONG\r\n"
+        conn.sendall(resp)
 
 if __name__ == "__main__":
     main()
