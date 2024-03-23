@@ -9,12 +9,16 @@ def main():
     # Uncomment this to pass the first stage
     #
     server_socket = socket.create_server(("localhost", 6379))
-    connection, address = server_socket.accept()  # wait for client
-    with connection:
-        while True:
-            req = connection.recv(1024)
-            pong_resp = "+PONG\r\n"
-            connection.send(pong_resp.encode())
+    while connection := server_socket.accept():
+        conn, addr = connection
+        thread = threading.Thread(target=respond, args=[conn])
+        thread.start()
+    
+    def respond(conn):
+        res = "+PONG\r\n"
+        with conn:
+            while req := conn.recv(1024):
+                conn.sendall(res.encode())
             
 
 if __name__ == "__main__":
