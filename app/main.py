@@ -1,4 +1,5 @@
 import socket
+import threading
 
 
 def main():
@@ -9,9 +10,11 @@ def main():
     #
     server_socket = socket.create_server(("localhost", 6379))
     connection, address = server_socket.accept()  # wait for client
-    pong_resp = "+PONG\r\n"
     with connection:
-        connection.send(pong_resp.encode())
+        while True:
+            req = connection.recv(1024)
+            pong_resp = "+PONG\r\n"
+            connection.send(pong_resp.encode())
 
 if __name__ == "__main__":
     main()
