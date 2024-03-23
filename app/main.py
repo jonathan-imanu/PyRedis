@@ -12,8 +12,8 @@ def main():
     connection, address = server_socket.accept()  # wait for client
     with connection:
         request = connection.recv(1024)
-        response = b"+PONG\r\n"
-        connection.sendall(response)
+        response = "+PONG\r\n"
+        connection.send(response.encode())
 
 if __name__ == "__main__":
     main()
