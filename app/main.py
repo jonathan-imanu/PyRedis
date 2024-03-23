@@ -12,7 +12,7 @@ def main():
     conn, server = server_socket.accept()
     with conn:
         data = conn.recv(1024)
-        conn.sendall(b"+PONG\r\n")
+        conn.sendall("+PONG\r\n")
 
 if __name__ == "__main__":
     main()
