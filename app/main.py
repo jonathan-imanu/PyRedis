@@ -7,13 +7,11 @@ def main():
 
     # Uncomment this to pass the first stage
     #
-    server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
-    server_socket.accept() 
+    server_socket = socket.create_server(("localhost", 6379))
     connection, address = server_socket.accept()  # wait for client
+    pong_resp = "+PONG\r\n"
     with connection:
-        request = connection.recv(1024)
-        response = "+PONG\r\n"
-        connection.send(response.encode())
+        connection.send(pong_resp.encode())
 
 if __name__ == "__main__":
     main()
