@@ -16,13 +16,23 @@ class RedisRequest:
             return RedisEncoder.encode_simple_string("PONG")
         elif self.command == "echo":
             return RedisEncoder.encode_bulk_string(self.data[1])
+        
         elif self.command == "set":
-            server.db[self.data[1]] = self.data[2]
-            return RedisEncoder.encode_simple_string("OK")
+            # server.db[self.data[1]] = self.data[2]
+            # return RedisEncoder.encode_simple_string("OK")
+            var = self.data[1]
+            val = self.data[2]
+            expiry = None
+            
+            if len(self.data) > 3 and self.data[4].lower() == "px":
+                expiry = self.data[4]
+            return server.database.set(var, val, expiry)
+            
         elif self.command == "get":
-            data = server.db[self.data[1]]
-            if not data: 
-                return RedisEncoder.encode_bulk_string("-1") 
-            return RedisEncoder.encode_simple_string(data)
+            # data = server.db[self.data[1]]
+            # if not data: 
+            #     return RedisEncoder.encode_bulk_string("-1") 
+            # return RedisEncoder.encode_simple_string(data)
+            return server.database.get(var = self.data[1])
     
     

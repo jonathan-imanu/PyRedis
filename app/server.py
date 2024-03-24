@@ -1,12 +1,12 @@
 import socket
 import threading    
 from app.redis_request import RedisRequest
-
+from app.database import Database
 
 
 class Server:
     def __init__(self):
-        self.db = {}
+        self.database = Database()
         
     def run(self):
         server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
