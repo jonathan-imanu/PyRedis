@@ -35,7 +35,7 @@ class RedisParser:
         Returns:
             bytes: The byte values
         """
-        return self.string[i , j]
+        return self.string[i: j]
     
     def parse_digits(self) -> int:
         """
