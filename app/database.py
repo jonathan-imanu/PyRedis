@@ -28,7 +28,7 @@ class Database():
  
         item = self.database[variable]
         
-        if item.expiry and item.expiry <= self.ms_time():
+        if item[1] and item[1] <= self.ms_time():
             del self.database[variable]
             return RedisEncoder.encode_bulk_string("-1")
         
