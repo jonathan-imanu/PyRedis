@@ -6,23 +6,23 @@ class RedisRequest:
         self.data = RedisParser().parse(request_bytes)
         self.command = self.data[0].lower()
         
-    def response(self, db) -> bytes:
+    def response(self, server) -> bytes:
         """Returns a response for the request in bytes depending on the command
 
         Returns:
             bytes: A response for the request
         """
         if self.command == "ping":
-            return RedisEncoder.encode_simple_string("PONG"), db
+            return RedisEncoder.encode_simple_string("PONG")
         elif self.command == "echo":
-            return RedisEncoder.encode_bulk_string(self.data[1]), db
+            return RedisEncoder.encode_bulk_string(self.data[1])
         elif self.command == "set":
-            db[self.data[1]] = self.data[2]
-            return RedisEncoder.encode_simple_string("OK"), db
+            server.db[self.data[1]] = self.data[2]
+            return RedisEncoder.encode_simple_string("OK")
         elif self.command == "get":
-            return RedisEncoder.encode_simple_string(db[self.data[1]]), db
-
-    def __str__(self):
-        return str(self.data)
+            data = server.db[self.data[1]]
+            if not data: 
+                return RedisEncoder.encode_bulk_string("-1") 
+            return RedisEncoder.encode_simple_string()
     
     

@@ -1,7 +1,7 @@
 import socket
 import threading    
 from app.redis_request import RedisRequest
-# from app.redis_data import Database
+from app.redis_storage import Database
 
 
 class Server:
@@ -22,7 +22,7 @@ class Server:
                 connection.close()
                 break
             redis_request = RedisRequest(request)
-            redis_response, self.db = redis_request.response(self.db)
+            redis_response = redis_request.response(self)
             connection.sendall(redis_response)
         connection.close()
     
