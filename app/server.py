@@ -50,10 +50,7 @@ class Server:
             if not request:
                 connection.close()
                 break
-            print(request)
             redis_request = RedisRequest(request)
-            print(str(redis_request))
             redis_response = redis_request.response()
-            print(redis_response)
             connection.sendall(redis_response)
         connection.close()
