@@ -20,6 +20,7 @@ class Database():
         if expiry is None:
             self.database[variable] = (value, expiry)
         else:
+            expiry = int(expiry)
             expiry += Database.ms_time()
             self.database[variable] = (value, expiry)
         return RedisEncoder.encode_simple_string("OK")
