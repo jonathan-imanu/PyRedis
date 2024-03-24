@@ -13,7 +13,8 @@ class Database():
         """Returns the current time in milliseconds."""
         return int(time() * 1000)
     
-    def set(self, variable: str, value: str, expiry: Optional[int] = None) -> str:
+    # def set(self, variable: str, value: str, expiry: Optional[int] = None) -> str:
+    def set(self, variable, value, expiry=None):
         if expiry is None:
             self.database[variable] = ITEM(value, expiry)
         else:
