@@ -20,7 +20,7 @@ class Database():
         if expiry is None:
             self.database[variable] = (value, expiry)
         else:
-            expiry = expiry + self.ms_time()
+            expiry += self.ms_time()
             self.database[variable] = (value, expiry)
         return RedisEncoder.encode_simple_string("OK")
      
@@ -31,7 +31,7 @@ class Database():
  
         item = self.database[variable]
         
-        if item[1] and item[1] <= self.ms_time():
+        if item[1] and item[1] <= Database.ms_time():
             del self.database[variable]
             print(NULL_BULK_STRING)
             return NULL_BULK_STRING
