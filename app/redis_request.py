@@ -13,7 +13,7 @@ class RedisRequest:
     #         return RedisEncoder.encode_bulk_string(self.data[1])
     
     def __init__(self, request_bytes: bytes):
-        self.data = RedisParser().parse(request_bytes)
+        self.data = RedisParser().parse_value(request_bytes)
         self.command = self.data[0].lower()
     def response(self) -> bytes:
         """
