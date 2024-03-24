@@ -32,7 +32,7 @@ class Database():
             del self.database[variable]
             return RedisEncoder.encode_bulk_string("-1")
         
-        return RedisEncoder.encode_bulk_string(item)
+        return RedisEncoder.encode_bulk_string(item[0])
     
     
 
