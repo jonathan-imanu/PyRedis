@@ -5,7 +5,7 @@ from app.redis_encoder import RedisEncoder
 
 # ITEM = namedtuple("value", "expiry")
 
-NULL_BULK_STRING = b'$-1\r\n'
+NULL_BULK_STRING = "$-1\r\n"
 
 class Database():
     def __init__(self):
@@ -27,14 +27,14 @@ class Database():
     def get(self, variable: str) -> str:
         if variable not in self.database:
             print(NULL_BULK_STRING)
-            return NULL_BULK_STRING
+            return NULL_BULK_STRING.encode()
  
         item = self.database[variable]
         
         if item[1] and item[1] <= Database.ms_time():
             del self.database[variable]
             print(NULL_BULK_STRING)
-            return NULL_BULK_STRING
+            return NULL_BULK_STRING.encode
         
         return RedisEncoder.encode_bulk_string(item[0])
     
