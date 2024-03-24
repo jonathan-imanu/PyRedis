@@ -3,7 +3,7 @@ from app.redis_parser import RedisParser
 
 class RedisRequest:
     def __init__(self, request) -> None:
-        self.data = RedisParser.parse_bulk_string(request)
+        self.data = RedisParser.parse_value(request)
         self.command = self.data[0].lower()
         
     def response(self)-> bytes:
