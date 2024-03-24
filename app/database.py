@@ -16,7 +16,7 @@ class Database():
         return int(time() * 1000)
     
     # def set(self, variable: str, value: str, expiry: Optional[int] = None) -> str:
-    def set(self, variable, value, expiry=None):
+    def set(self, variable, value, expiry):
         if expiry is None:
             self.database[variable] = (value, expiry)
         else:
@@ -36,6 +36,7 @@ class Database():
             print(NULL_BULK_STRING)
             return NULL_BULK_STRING.encode
         
+        print(RedisEncoder.encode_bulk_string(item[0]))
         return RedisEncoder.encode_bulk_string(item[0])
     
     
