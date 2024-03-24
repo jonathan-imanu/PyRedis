@@ -16,7 +16,7 @@ def main():
     server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
     while connection := server_socket.accept():
         conn, addr = connection
-        thread = threading.Thread(target=respond, args=[connection])
+        thread = threading.Thread(target=respond, args=[conn])
         thread.start()
         
 if __name__ == "__main__":
