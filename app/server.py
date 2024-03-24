@@ -1,7 +1,7 @@
 import socket
 import threading    
 from app.redis_request import RedisRequest
-from app.redis_storage import Database
+
 
 
 class Server:
