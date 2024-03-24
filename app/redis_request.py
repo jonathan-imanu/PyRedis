@@ -33,6 +33,6 @@ class RedisRequest:
             # if not data: 
             #     return RedisEncoder.encode_bulk_string("-1") 
             # return RedisEncoder.encode_simple_string(data)
-            return server.database.get(var = self.data[1])
+            return server.database.get(self.data[1])
     
     
