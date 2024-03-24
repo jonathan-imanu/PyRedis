@@ -5,6 +5,7 @@ def respond(conn):
     response = "+PONG\r\n"
     with conn:
         while req := conn.recv(1024):
+            print(req)
             conn.send(response.encode())
 
 def main():
@@ -16,7 +17,6 @@ def main():
     server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
     while connection := server_socket.accept():
         conn, addr = connection
-        print(conn)
         thread = threading.Thread(target=respond, args=[conn])
         thread.start()
         
