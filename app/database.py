@@ -35,7 +35,7 @@ class Database():
         if item[1] and item[1] <= Database.ms_time():
             del self.database[variable]
             print(NULL_BULK_STRING)
-            return NULL_BULK_STRING.encode
+            return NULL_BULK_STRING.encode()
         
         print(RedisEncoder.encode_bulk_string(item[0]))
         return RedisEncoder.encode_bulk_string(item[0])
