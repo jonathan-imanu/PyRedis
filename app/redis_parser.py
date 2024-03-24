@@ -45,8 +45,7 @@ class RedisParser:
         idx = self.index
         while self.current_byte().isdigit():
             self.increment()
-            idx+=1
-        return self.substring(self.index, idx)
+        return self.substring(idx, self.index)
         
     def parse_single(self, b: bytes) -> None:
         """
