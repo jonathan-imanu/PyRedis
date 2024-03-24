@@ -3,11 +3,11 @@ from collections import namedtuple
 from typing import Optional
 from app.redis_encoder import RedisEncoder
 
-ITEM = namedtuple("value", "expiry")
+# ITEM = namedtuple("value", "expiry")
 
 class Database():
     def __init__(self):
-       self.database: dict[str, ITEM] = {}
+       self.database: dict[str, tuple] = {}
     
     def ms_time() -> int:
         """Returns the current time in milliseconds."""
@@ -16,10 +16,10 @@ class Database():
     # def set(self, variable: str, value: str, expiry: Optional[int] = None) -> str:
     def set(self, variable, value, expiry=None):
         if expiry is None:
-            self.database[variable] = ITEM(value, expiry)
+            self.database[variable] = (value, expiry)
         else:
             expiry = expiry + self.ms_time()
-            self.database[variable] = ITEM(value, expiry)
+            self.database[variable] = (value, expiry)
         return RedisEncoder.encode_simple_string("OK")
      
     def get(self, variable: str) -> str:
