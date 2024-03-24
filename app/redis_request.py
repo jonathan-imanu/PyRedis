@@ -22,7 +22,7 @@ class RedisRequest:
             val = self.data[2]
             expiry = None
             
-            if len(self.data) > 4 and self.data[4].lower() == "px":
+            if len(self.data) > 4 and self.data[3].lower() == "px":
                 expiry = self.data[4]
             return server.database.set(var, val, expiry)
             
