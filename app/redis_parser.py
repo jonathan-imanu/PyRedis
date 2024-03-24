@@ -43,7 +43,7 @@ class RedisParser:
         :return: the integer representation of the parsed digits
         """
         idx = self.index
-        while self.get(idx).isDigit():
+        while self.current_byte().isdigit():
             self.increment()
             idx+=1
         return self.substring(self.index, idx)
