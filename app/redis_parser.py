@@ -101,6 +101,7 @@ class RedisParser:
         list = []
         self.parse_single(b"*")
         length = self.parse_digits()
+        self.parse_endline()
         for i in range(length):
             list.append(self.parse_value())
         return list     
