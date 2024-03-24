@@ -6,5 +6,6 @@ class Commands:
     SET = "SET"
     INFO = "INFO"
     
+    
 class Arguments:
     PX = "PX"
