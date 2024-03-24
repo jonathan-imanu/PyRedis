@@ -22,7 +22,7 @@ class Server:
                 connection.close()
                 break
             redis_request = RedisRequest(request)
-            redis_response = redis_request.response()
+            redis_response, self.db = redis_request.response(self.db)
             connection.sendall(redis_response)
         connection.close()
     

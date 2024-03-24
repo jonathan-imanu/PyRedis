@@ -13,14 +13,14 @@ class RedisRequest:
             bytes: A response for the request
         """
         if self.command == "ping":
-            return RedisEncoder.encode_simple_string("PONG")
+            return RedisEncoder.encode_simple_string("PONG"), db
         elif self.command == "echo":
-            return RedisEncoder.encode_bulk_string(self.data[1])
+            return RedisEncoder.encode_bulk_string(self.data[1]), db
         elif self.command == "set":
             db[self.data[1]] = self.data[2]
-            return RedisEncoder.encode_simple_string("OK")
+            return RedisEncoder.encode_simple_string("OK"), db
         elif self.command == "get":
-            return db[self.data[1]]
+            return db[self.data[1]], db
 
     def __str__(self):
         return str(self.data)
