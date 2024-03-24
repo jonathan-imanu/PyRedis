@@ -6,7 +6,7 @@ class RedisEncoder:
         pass
     def encode_integers(error):
         pass
-    def encode_bulk_strings(string):
+    def encode_bulk_string(string):
         return b"$" + string.encode() + b"\r\n"
     def encode_arrays(array):
         pass
