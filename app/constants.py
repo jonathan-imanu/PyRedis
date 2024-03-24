@@ -4,5 +4,7 @@ class Commands:
     PING = "PING"
     GET = "GET"
     SET = "SET"
+    INFO = "INFO"
+    
 class Arguments:
     PX = "PX"

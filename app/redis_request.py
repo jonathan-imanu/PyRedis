@@ -27,5 +27,6 @@ class RedisRequest:
                 return server.database.set(var, val, expiry)
             case Commands.GET:
                 return server.database.get(self.data[1])
-    
+            case Commands.INFO:
+                return RedisEncoder.encode_bulk_string(server.role)
     
