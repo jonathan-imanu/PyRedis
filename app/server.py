@@ -11,13 +11,13 @@ class Server:
     def run(self):
         server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
         while True:
-            connection = server_socket.accept()
+            connection, address = server_socket.accept()
             thread = threading.Thread(
-                target=self.client_thread, args=(connection)
+                target=self.client_thread, args=(connection, address)
             )
             thread.start()
 
-    def client_thread(self, connection):
+    def client_thread(self, connection, address):
         # conn, addr = connection
         # while True:
         #     request = conn.recv(1024)
@@ -28,11 +28,11 @@ class Server:
         #     redis_response = redis_request.response(self)
         #     connection.sendall(redis_response)
         # connection.close()
-        conn, addr = connection
-        while request := conn.recv(1024):
+        
+        while request := connection.recv(1024):
             redis_request = RedisRequest(request)
             redis_response = redis_request.response(self)
-            conn.sendall(redis_response)
+            connection.sendall(redis_response)
             
     
     
