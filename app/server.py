@@ -2,6 +2,7 @@ import socket
 import threading    
 from app.redis_request import RedisRequest
 from app.database import Database
+from argparse import ArgumentParser
 
 
 class Server:
@@ -9,7 +10,10 @@ class Server:
         self.database = Database()
         
     def run(self):
-        server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
+        arg_parser = ArgumentParser()
+        arg_parser.add_argument("--port", dest="port", default=6379, type=int)
+        args = arg_parser.parse_args()
+        server_socket = socket.create_server(("localhost", args.port), reuse_port=True)
         while True:
             connection, address = server_socket.accept()
             thread = threading.Thread(target=self.new_client, args=(connection, address))
