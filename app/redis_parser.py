@@ -11,7 +11,7 @@ class RedisParser:
         self.value = None
     def inc(self) -> None:
         self.index += 1
-    def curr(self) -> bytes:
+    def current_byte(self) -> bytes:
         """
         Get the current byte
         :return: The current byte
@@ -89,7 +89,7 @@ class RedisParser:
         :return: the integer representation of the parsed digits
         """
         i = self.index
-        while self.curr().isdigit():
+        while self.current_byte().isdigit():
             self.inc()
         return int(self.substring(i, self.index))
     def parse_single(self, b: bytes):
@@ -97,7 +97,7 @@ class RedisParser:
         Parse the current byte if it is equal to input
         :param b: The input
         """
-        if self.curr() == b:
+        if self.current_byte() == b:
             self.inc()
     def parse_endline(self):
         """
