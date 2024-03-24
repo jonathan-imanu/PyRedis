@@ -1,7 +1,9 @@
+CRLF = b'\r\n'
+
 class RedisEncoder:
     @staticmethod
     def encode_simple_string(string) -> bytes:
-        return b"+" + string.encode() + b"\r\n"
+        return b"+" + string.encode() + CRLF
     @staticmethod
     def encode_simple_errors():
         pass
@@ -10,7 +12,7 @@ class RedisEncoder:
         pass
     @staticmethod
     def encode_bulk_string(string):
-        return b"$" + string.encode() + b"\r\n"
+        return b"$" +  str(len(string)).encode() + CRLF + string.encode() + CRLF
     @staticmethod
     def encode_arrays(array):
         pass
