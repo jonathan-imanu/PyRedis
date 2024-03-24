@@ -26,13 +26,15 @@ class Database():
      
     def get(self, variable: str) -> str:
         if variable not in self.database:
-            return NULL_BULK_STRING.encode()
+            print(NULL_BULK_STRING)
+            return NULL_BULK_STRING
  
         item = self.database[variable]
         
         if item[1] and item[1] <= self.ms_time():
             del self.database[variable]
-            return NULL_BULK_STRING.encode()
+            print(NULL_BULK_STRING)
+            return NULL_BULK_STRING
         
         return RedisEncoder.encode_bulk_string(item[0])
     
