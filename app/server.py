@@ -2,7 +2,7 @@ import socket
 import threading    
 from app.redis_request import RedisRequest
 from app.database import Database
-
+#haflhfasdljfhjkaksjfdhasjk
 class Server:
     def __init__(self, port=6379):
         self.database = Database()
