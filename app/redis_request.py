@@ -20,7 +20,7 @@ class RedisRequest:
             db[self.data[1]] = self.data[2]
             return RedisEncoder.encode_simple_string("OK"), db
         elif self.command == "get":
-            return db[self.data[1]], db
+            return RedisEncoder.encode_simple_string(db[self.data[1]]), db
 
     def __str__(self):
         return str(self.data)
