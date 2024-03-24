@@ -23,6 +23,6 @@ class RedisRequest:
             data = server.db[self.data[1]]
             if not data: 
                 return RedisEncoder.encode_bulk_string("-1") 
-            return RedisEncoder.encode_simple_string()
+            return RedisEncoder.encode_simple_string(data)
     
     
