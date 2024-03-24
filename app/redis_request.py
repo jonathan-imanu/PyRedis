@@ -29,5 +29,5 @@ class RedisRequest:
                 return server.database.get(self.data[1])
             case Commands.INFO:
                 print(RedisEncoder.encode_bulk_string(server.role))
-                return RedisEncoder.encode_bulk_string(server.role)
+                return RedisEncoder.encode_bulk_string("role:" + server.role)
     
