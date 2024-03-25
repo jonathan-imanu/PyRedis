@@ -6,9 +6,12 @@ from app.database import Database
 class Server:
     def __init__(self, port=6379, replica=[]):
         self.database = Database()
-        if replica != []:
+
+        if replica:
             self.role = "slave"
-        self.role = "master"
+        else: 
+            self.role = "master"
+        
         self.port = port
     def run(self):
         server_socket = socket.create_server(("localhost", self.port), reuse_port=True)
