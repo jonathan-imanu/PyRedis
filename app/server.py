@@ -4,9 +4,11 @@ from app.redis_request import RedisRequest
 from app.database import Database
 #haflhfasdljfhjkaksjfdhasjk
 class Server:
-    def __init__(self, port=6379):
+    def __init__(self, port=6379, replica=None):
         self.database = Database()
         self.role = "master"
+        if replica:
+            self.role = "slave"
         self.port = port
     def run(self):
         server_socket = socket.create_server(("localhost", self.port), reuse_port=True)
