@@ -1,6 +1,6 @@
 # PyRedis
 
-A fully functionally toy Redis clone with support for leader-follower replication, RDB Persistance and Streams
+A fully functionally toy Redis clone built in Python with support for leader-follower replication, RDB Persistance and Streams.
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ A fully functionally toy Redis clone with support for leader-follower replicatio
 
 ## What is Redis?
 
- Redis is an open source (BSD licensed) in-memory data structure store often used as a database, cache, message broker and streaming engine. Redis provides data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes, and streams. [Source] (https://redis.io/docs/about/)
+ Redis is an open source (BSD licensed) in-memory data structure store often used as a database, cache, message broker and streaming engine. Redis provides data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes, and streams. [Source](https://redis.io/docs/about/)
 
 ## About PyRedis
 
