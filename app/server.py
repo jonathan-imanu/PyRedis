@@ -6,11 +6,16 @@ from app.database import Database
 class Server:
     def __init__(self, port=6379, replica=[]):
         self.database = Database()
-
+        
+        self.role = "master"
         if replica:
             self.role = "slave"
-        else: 
-            self.role = "master"
+        
+        self.master_replid="8371b4fb1155b71f4a04d3e1bc3e18c4a990aeeb"
+        self.master_repl_offset=0
+         
+            
+        
         
         self.port = port
     def run(self):
