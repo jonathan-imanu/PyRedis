@@ -7,10 +7,10 @@ def main():
 
     arg_parser = ArgumentParser()
     arg_parser.add_argument("--port", dest="port", default=6379, type=int, help="The port on which to run the server")
-    arg_parser.add_argument("--replicaof", nargs=2, metavar=("master_host", "master_port"), default=[], help="The master host and port to replicate all changes from")
+    arg_parser.add_argument("--replicaof", dest="replicaof", nargs=2, metavar=("master_host", "master_port"), default=[], help="The master host and port to replicate all changes from")
     args = arg_parser.parse_args()
     
-    server = Server(args.port, args.replica)
+    server = Server(args.port, args.replicaof)
     server.run()
         
 if __name__ == "__main__":
