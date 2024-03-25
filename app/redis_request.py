@@ -28,6 +28,6 @@ class RedisRequest:
             case Commands.GET:
                 return server.database.get(self.data[1])
             case Commands.INFO:
-                info = "role:" + server.role  + "master_replid:" + server.master_replid + "master_repl_offset" + server.master_repl_offset
+                info = "role:" + server.role  + "\r\n" + "master_replid:" + server.master_replid + "\r\n" + "master_repl_offset" + server.master_repl_offset
                 return RedisEncoder.encode_bulk_string(info)
     
