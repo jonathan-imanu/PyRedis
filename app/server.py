@@ -23,10 +23,11 @@ class Server:
     
     def connect_to_master(self):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-            sock.settimeout(5)
-            sock.connect(self.replica)
+            sock.settimeout(10)
+            sock.connect(self.master)
             sock.sendall(RedisEncoder.encode_arrays(["ping"]))
             data = sock.recv(1024)
+            print(data)
             sock.close()
             return data
 
