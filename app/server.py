@@ -31,8 +31,8 @@ class Server:
             return data
 
     def run(self):
-        if self.replica:
-            self.connect_to_master()
+        # if self.replica:
+        #     self.connect_to_master()
         server_socket = socket.create_server(("localhost", self.port), reuse_port=True)
         
         while True:
