@@ -27,7 +27,6 @@ class Server:
             sock.connect(self.master)
             sock.sendall(RedisEncoder.encode_arrays(["ping"]))
             data = sock.recv(1024)
-            print(data)
             sock.close()
             return data
 
