@@ -3,8 +3,6 @@ from collections import namedtuple
 from typing import Optional
 from app.redis_encoder import RedisEncoder
 
-# ITEM = namedtuple("value", "expiry")
-
 NULL_BULK_STRING = "$-1\r\n"
 
 class Database():
@@ -15,8 +13,17 @@ class Database():
         """Returns the current time in milliseconds."""
         return int(time() * 1000)
     
-    # def set(self, variable: str, value: str, expiry: Optional[int] = None) -> str:
-    def set(self, variable, value, expiry):
+    def set(self, variable: str, value, expiry) -> bytes:
+        """_summary_
+
+        Args:
+            variable (str): _description_
+            value (_type_): _description_
+            expiry (_type_): _description_
+
+        Returns:
+            bytes: _description_
+        """
         if expiry is None:
             self.database[variable] = (value, expiry)
         else:
@@ -25,7 +32,15 @@ class Database():
             self.database[variable] = (value, expiry)
         return RedisEncoder.encode_simple_string("OK")
      
-    def get(self, variable: str) -> str:
+    def get(self, variable: str) -> bytes:
+        """_summary_
+
+        Args:
+            variable (str): _description_
+
+        Returns:
+            bytes: _description_
+        """
         if variable not in self.database:
             print(NULL_BULK_STRING)
             return NULL_BULK_STRING.encode()
@@ -37,7 +52,6 @@ class Database():
             print(NULL_BULK_STRING)
             return NULL_BULK_STRING.encode()
         
-        print(RedisEncoder.encode_bulk_string(item[0]))
         return RedisEncoder.encode_bulk_string(item[0])
     
     
