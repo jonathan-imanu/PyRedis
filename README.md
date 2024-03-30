@@ -1,12 +1,11 @@
 # PyRedis
 
-A fully functionally toy Redis clone built in Python with support for leader-follower replication, RDB Persistance and Streams.
+A fully functionally toy Redis clone built in Python with support for leader-follower replication.
 
 ## Table of Contents
 
 - [What is Redis?](#what-is-redis)
 - [About PyRedis](#about-pyredis)
-- [WIP!](#wip)
 
 
 ## What is Redis?
@@ -15,9 +14,5 @@ A fully functionally toy Redis clone built in Python with support for leader-fol
 
 ## About PyRedis
 
-**PyRedis** is a toy Redis clone originally built alongisde the ["Build Your Own Redis" Challenge](https://codecrafters.io/challenges/redis) from [CodeCrafters](https://app.codecrafters.io/catalog). Over the past few months, WIP!
-
-# WIP!
-
-In a month or two this will look very nice ! (hopefully)
+**PyRedis** is a toy Redis clone originally built alongisde the ["Build Your Own Redis" Challenge](https://codecrafters.io/challenges/redis) from [CodeCrafters](https://app.codecrafters.io/catalog). It supports the PING, SET, GET and INFO commands.s
 
